@@ -53,13 +53,11 @@ brew 'python'    # TODO: Move to using asdf to manage this
 brew 'recutils'
 
 # Utils
-brew 'mas'  # mas-cli for app-store managed apps
 brew 'tmux'
-brew 'shellcheck'
+brew 'aspell'
 brew 'graphviz'
 
 brew 'ssh-askpass', restart_service: true # TODO: Does this also handle configuring for starting the service on re-login?
-brew 'syncthing'    # Note: Not starting this service - only started on-demand
 
 brew 'socat'
 brew 'tig'
@@ -80,6 +78,5 @@ cask 'xquartz'
 # Kubernetes
 
 brew 'kubernetes-cli'
-brew 'minikube'
-brew 'k9s'
-brew 'kubectx'
+# brew 'k9s' Moved to asdf
+# brew 'kubectx' Moved to asdf
