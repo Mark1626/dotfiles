@@ -1,0 +1,13 @@
+[user]
+	name = m.nimalan
+	email = my-primary-email@domain.com
+[includeIf "gitdir:/path/to/Documents/"]
+  path = ~/.gitconfig-github
+[rebase]
+  autoStash = true
+[include]
+  path = ~/.gitalias
+[init]
+	templatedir = /path/to/.git-template
+[gpg]
+	program = gpg
