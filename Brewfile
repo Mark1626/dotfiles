@@ -49,6 +49,8 @@ brew 'wget'
 # Utils
 brew 'direnv'
 brew 'ripgrep'
+brew 'asdf'
+brew 'gpg'
 
 # Casks
 #cask 'zoom'
