@@ -1,0 +1,125 @@
+[alias]
+  dangling = fsck --no-reflog
+  ec = config --global -e
+  f = "!git ls-files | grep -i"
+  bd = "!sh -c 'git push origin --delete $0; git branch -D $0'"
+  latest = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+  what = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  who = shortlog -s --
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  standup = log --since 1.week.ago --author
+  l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  mn = merge --no-commit
+  cn = cherry-pick --no-commit
+  cr = cherry-pick
+  ci = commit -m
+  co = checkout
+  cl = clone
+  st = status
+  sts = status --short
+  b = branch
+  d = diff
+  dw = diff --word-diff
+  dc = diff --cached
+  dcw = diff --word-diff --cached
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  amend = commit --amend
+  amq = commit --amend --no-edit --quiet
+  unstage = reset HEAD --
+  diff = diff --word-diff
+  grep = grep -Ii
+  pend = !sh -c 'git log origin/"$1".."$1"' -
+  fo = fetch --all --tags
+  rpo = remote prune origin
+  in = log --reverse ..@{u}
+  inp = log -p --reverse ..@{u}
+  inc = diff ..@{u}
+  out = log --reverse @{u}..
+  outp = log -p --reverse @{u}..
+  g = grep --break --heading --line-number
+  sf = submodule foreach
+  # Note: Do not use '--all' switch for reflog expire - since that also destroys stashes
+  cc = "!du -sh .git; git reflog expire --expire=now; git gc --aggressive --prune=now; du -sh .git;"
+  big = "!git rev-list --objects --all | grep \"$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -100 | awk '{print$1}')\""
+
+
+  # check if the specified branch has had a commit in the past 100 days and if so, report
+  # old = "!sh -c '[[ \"`git log $0/$1 --since 100.days -1 | wc -l`\" -eq 0 ]] && echo \"Will need to delete $0/$1\" && git push $0 --delete $1'"
+  old = "!sh -c '[[ \"`git log $0/$1 --since 100.days -1 | wc -l`\" -eq 0 ]] && echo \"Will need to delete $0/$1\"'"
+
+  # [siu = submodule init update] Runs submodule-initialisation and update after a fresh checkout RECURSIVE!
+  siu = "!git submodule update --init --recursive; git sf \"git siu\""
+
+  # Push all submodules
+  pushsub = sf "git push"
+
+  # Pull all submodules
+  pullsub = sf "git pull"
+  dcolor = diff --color-words
+[branch]
+  autosetupmerge = true
+  autosetuprebase = always
+[color]
+  ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  pager = true
+[core]
+  pager = less -FRX
+  #editor = code --wait
+  editor = vi
+  autocrlf = input
+	excludesfile = /Users/nimalanm/.gitignore_global
+  commentchar = *
+[diff]
+  compactionHeuristic = true
+[fetch]
+  prune = true
+[filter "lfs"]
+  required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+[help]
+  autocorrect = 1
+[gc]
+  pruneexpire = now
+[grep]
+  extendRegexp = true
+  lineNumber = true
+[merge]
+  defaultToUpstream = true
+  ff = only
+  conflictstyle = diff3
+[pager]
+#   log = diff-highlight | less
+	show = diff-so-fancy | less --tabs=1,5 -RFX
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+# [interactive]
+#   diffFilter = diff-highlight
+[pack]
+  threads = 6
+[push]
+  default = tracking
+[pull]
+  rebase = true
+[rebase]
+  autosquash = true
+[stash]
+  untracked = true
+[status]
+  showUntrackedFiles = all
+  submodulesummary = true  # Convert to 'true' in case you work with submodules
+[submodule]
+  fetchJobs = 4
+[tag]
+  sort = version:refname
+[transfer]
+  fsckobjects = false
+[commit]
+	template = /Users/nimalanm/.stCommitMsg
+	gpgsign = true
+[gpg]
+	program = gpg
