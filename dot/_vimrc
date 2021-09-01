@@ -2,9 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Vim 8 package
-packadd! dracula
+" packadd! dracula
+" color dracula
 syntax enable
-color dracula
 
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -37,7 +37,6 @@ set splitbelow
 set tabstop=2
 set title
 set termencoding=utf-8
-set virtualedit=all
 scriptencoding utf-8
 
 " Buffer mapping

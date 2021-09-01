@@ -24,8 +24,9 @@ brew 'm4'
 
 # Other tools
 brew 'recutils'
-# brew 'tectonic' # Tex
-# brew 'aspell'
+brew 'tectonic' # Tex
+brew 'aspell'
+brew 'pandoc'
 
 # C++ libs
 brew 'boost'
