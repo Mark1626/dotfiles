@@ -27,17 +27,17 @@ keys:
 
 dotenv: $(dotfiles)
 
-repo-mac:
+repos:
 	mkdir -p ~/Documents/opensource/personal
 	# cd ~/Documents/opensource/personal
 	git clone git@github.com:Mark1626/Paraphernalia.git ~/Documents/opensource/personal/Paraphernalia
 	git clone git@github.com:Mark1626/knowledge.git ~/Documents/opensource/personal/knowledge
+	git clone git@github.com:Mark1626/road-to-plus-plus.git ~/Documents/opensource/personal/road-to-plus-plus
+	git clone git@github.com:Mark1626/Tiddier ~/Documents/opensource/personal/Tiddier
+	git clone git@github.com:Mark1626/dotfiles ~/Documents/opensource/personal/dotfiles
 
-repo-linux:
-	mkdir -p ~/projects/opensource/personal
+setup-mac: brew sw keys dotenv repo
 
-setup-mac: brew sw keys dotenv repo-mac
+setup-linux: sw keys dotenv repo
 
-setup-linux: sw keys dotenv repo-linux
-
-.PHONY: brew sw keys dotenv repo-mac setup-mac setup-linux
+.PHONY: brew sw keys dotenv repo setup-mac setup-linux
